@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Passenger Survival prediction</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1 style="text-align: center">predict whether a passenger survived or not  </h1>
+
+    <div class="form">
+        <form action="/predict" method="POST">
+            <div class="row">
+                <div class="col">
+
+                    <label for="inputAddress"><b>Passenger Class:</b> <i>(Passenger Prefer which type of Travel Class)</i></label>
+                    <select name="Pclass" id="Pclass" class="form-control">
+                        <option value="1">First Class</option>
+                        <option value="2">Second Class</option>
+                        <option value="3">Third CLass</option>
+
+                    </select>
+                </div>
+
+                <div class="col">
+                    <label for="inputAddress"><b>SibSp</b> <i>(Number of Siblings/Spouses Aboard)</i></label>
+                    <input type="number" name="SibSp" id="SibSp" class="form-control" max="10" min="0"
+                           placeholder="Enter values">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="inputAddress"><b>Sex</b> <i>(Passenger is Male or Female)</i></label>
+                    <select name="Sex" id="Sex" class="form-control">
+                        <option value="0">Female</option>
+                        <option value="1">Male</option>
+                    </select>
+                </div>
+
+                <div class="col">
+                    <label for="inputAddress"><b>Parch</b> <i>(Number of Parents/Children Aboard)</i></label>
+                    <input type="number" name="Parch" id="Parch" class="form-control" max="10" min="0"
+                           placeholder="Enter values">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <label for="inputAddress"><b>Age</b> <i>(Passenger Age)</i></label>
+                    <input type="number" name="Age" id="Age" class="form-control" max="100" min="0"
+                           placeholder="Enter values">
+                </div>
+
+                <div class="col">
+                    <div class="col">
+                    <label for="inputAddress"><b>Fare</b> <i>(Passenger Fare Paid For Travel)</i></label>
+                    <input type="number" name="Fare" id="Fare" class="form-control" max="10000" min="0"
+                           placeholder="Enter values">
+                </div>
+                </div>
+            </div>
+
+            <br/>
+            <div class="row">
+                <button type="submit" class="btn btn-primary">predict- whether a passenger survived or not</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% if hasValues%}
+
+<hr/>
+
+<div>
+    <div class="alert alert-success" role="alert"><p> whether a passenger is survived or not  <b>{{prediction}}</b></p></div>
+
+
+</div>
+{% endif %}
+{% endblock %}
+
